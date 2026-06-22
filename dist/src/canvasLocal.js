@@ -79,19 +79,17 @@ export class CanvasLocal {
         this.graphics.strokeStyle = 'black';
     }
     paint(h = []) {
-        if (!h || h.length === 0) return;
-        
-        // Limpiamos el canvas entero
+        if (!h || h.length === 0)
+            return;
+        // Función para borrar el lienzo y permitir que el gráfico reaccione dinámicamente
         this.graphics.clearRect(0, 0, this.graphics.canvas.width, this.graphics.canvas.height);
-        
         let maxEsc;
+        // Agregamos colores repetidos en caso de que ingreses más de 5 valores
         let colors = ['magenta', 'red', 'green', 'yellow', 'blue', 'magenta', 'red', 'green', 'yellow', 'blue'];
         maxEsc = this.maxH(h);
-        
         this.graphics.strokeStyle = 'black';
         this.drawLine(this.iX(0), this.iY(0), this.iX(9), this.iY(0));
         this.drawLine(this.iX(0), this.iY(0), this.iX(0), this.iY(7));
-        
         let i = 0;
         for (let x = 0.25; x <= 9; x += 2.125) {
             this.drawLine(this.iX(x - 0.25), this.iY(0), this.iX(x), this.iY(0.5));
@@ -99,41 +97,25 @@ export class CanvasLocal {
             this.graphics.strokeText((maxEsc * i / 4) + "", this.iX(x - 0.4), this.iY(-0.3));
             i++;
         }
-        
         let avance = (6 / (Math.max(h.length, 1) * 1.5));
         let yStart = 0.5;
-        
         for (let ind = 0; ind < h.length; ind++) {
             let y = yStart + (ind * avance * 1.5);
             let valX = 8.5 * h[ind] / maxEsc;
-            
             this.graphics.strokeStyle = colors[ind % colors.length];
             this.graphics.fillStyle = colors[ind % colors.length];
-            
-            this.drawBarra3d(
-                this.iX(0), this.iY(y),
-                this.iX(valX), this.iY(y),
-                this.iX(valX + 0.5), this.iY(y + 0.25),
-                this.iX(valX + 0.5), this.iY(y + avance + 0.25),
-                this.iX(0.5), this.iY(y + avance + 0.25),
-                this.iX(0), this.iY(y + avance),
-                colors[ind % colors.length]
-            );
-            
+            this.drawBarra3d(this.iX(0), this.iY(y), this.iX(valX), this.iY(y), this.iX(valX + 0.5), this.iY(y + 0.25), this.iX(valX + 0.5), this.iY(y + avance + 0.25), this.iX(0.5), this.iY(y + avance + 0.25), this.iX(0), this.iY(y + avance), colors[ind % colors.length]);
             this.graphics.strokeStyle = 'black';
             this.drawLine(this.iX(0), this.iY(y), this.iX(valX), this.iY(y));
             this.drawLine(this.iX(valX), this.iY(y), this.iX(valX), this.iY(y + avance));
             this.drawLine(this.iX(0), this.iY(y), this.iX(0), this.iY(y + avance));
             this.drawLine(this.iX(0), this.iY(y + avance), this.iX(valX), this.iY(y + avance));
-            
             this.drawLine(this.iX(valX), this.iY(y), this.iX(valX + 0.5), this.iY(y + 0.25));
             this.drawLine(this.iX(valX + 0.5), this.iY(y + 0.25), this.iX(valX + 0.5), this.iY(y + avance + 0.25));
             this.drawLine(this.iX(valX), this.iY(y + avance), this.iX(valX + 0.5), this.iY(y + avance + 0.25));
-            
             this.drawLine(this.iX(0), this.iY(y + avance), this.iX(0.5), this.iY(y + avance + 0.25));
             this.drawLine(this.iX(0.5), this.iY(y + avance + 0.25), this.iX(valX + 0.5), this.iY(y + avance + 0.25));
         }
-        
         for (let j = 0; j < h.length; j++) {
             this.graphics.strokeText("Valor: " + h[j], this.iX(10.5), this.iY(6 - j));
             this.graphics.fillStyle = colors[j % colors.length];

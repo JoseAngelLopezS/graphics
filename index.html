@@ -1,89 +1,169 @@
 <!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation Starter Template</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style/index.css">
-    </head>
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Graficación</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Abrir</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Vizualizar</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Expand</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  About
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Development Team </a></li>
-                  <li><a class="dropdown-item" href="#">Version</a></li>
-                  <li><a class="dropdown-item" href="#">Contact</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+<html class="no-js" lang="es">
 
-      <div class="card text-center">
-        <div class="card-header">
-          Canvas de visualización
-        </div>
-        <div class="chart card-img-bottom">
-            <canvas id="circlechart" width="640" height="480"></canvas>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Proyecto Final - Lámpara 3D</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+    crossorigin="anonymous">
+
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+
+      <a class="navbar-brand" href="#">Graficación</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+        <ul class="navbar-nav">
+
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Abrir</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">Visualizar</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="moverPiezasMenu" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              Mover piezas
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="moverPiezasMenu">
+              <li><button class="dropdown-item" id="btnBrazoInferiorArriba">Brazo inferior arriba</button></li>
+              <li><button class="dropdown-item" id="btnBrazoInferiorAbajo">Brazo inferior abajo</button></li>
+              <li><button class="dropdown-item" id="btnBrazoSuperiorArriba">Brazo superior arriba</button></li>
+              <li><button class="dropdown-item" id="btnBrazoSuperiorAbajo">Brazo superior abajo</button></li>
+              <li><button class="dropdown-item" id="btnCabezaIzquierda">Cabeza izquierda</button></li>
+              <li><button class="dropdown-item" id="btnCabezaDerecha">Cabeza derecha</button></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><button class="dropdown-item" id="btnReiniciar">Reiniciar posición</button></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              About
+            </a>
+
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Proyecto Final</a></li>
+              <li><a class="dropdown-item" href="#">Modelo 3D</a></li>
+              <li><a class="dropdown-item" href="#">Lámpara articulada</a></li>
+            </ul>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid mt-3">
+
+    <div class="row">
+
+      <div class="col-12 col-lg-8">
+
+        <div class="card text-center">
+
+          <div class="card-header">
+            Canvas de visualización
           </div>
-        <div class="card-body">
-          <h5 class="card-title">Gráfico</h5>
-          
-          <div class="input-group mb-3" style="max-width: 600px; margin: 0 auto;">
-            <span class="input-group-text" id="basic-addon1">Datos:</span>
-            <input type="text" id="datosEntrada" class="form-control" placeholder="00, 00, 00, 00, 00, 00" aria-label="Datos" aria-describedby="button-addon2">
-            <button class="btn btn-success" type="button" id="btnDibujar">Generar Gráfico</button>
+
+          <div class="chart card-img-bottom">
+            <canvas id="circlechart" width="760" height="500"></canvas>
           </div>
-          
-          <p class="card-text">Ingresa valores numéricos separados por comas para actualizar la gráfica.</p>
+
+          <div class="card-body">
+            <h5 class="card-title">Modelo 3D: Lámpara articulada</h5>
+            <p class="card-text">
+              Selecciona el archivo <strong>lampara.dat</strong> para cargar el modelo.
+              Posteriormente se podrá rotar, hacer zoom y mover sus piezas.
+            </p>
+          </div>
+
+          <div class="card-footer text-muted">
+            Proyecto Final
+          </div>
+
         </div>
-        
-        <div class="card-footer text-muted">
-          Práctica 3
-        </div>
+
       </div>
 
-      <footer id="footer" class="pb-4 pt-4">
-        <div class="container">
-          <div class="row text-center">
-            <div class="col-12 col-lg">
-              <a href="#">Repositorio Principal</a>
-            </div>
-            <div class="col-12 col-lg">
-              <a href="#">Contáctanos</a>
-            </div>
-            <div class="col-12 col-lg">
-              <a href="#">Estudiantes</a>
-            </div>
+      <div class="col-12 col-lg-4">
+
+        <div class="card">
+
+          <div class="card-header">
+            Archivo del modelo
           </div>
+
+          <div class="card-body">
+
+            <label for="archivoModelo" class="form-label">Seleccionar archivo:</label>
+            <input type="file" id="archivoModelo" class="form-control" accept=".dat,.txt">
+
+            <h5 class="mt-4">Contenido del archivo:</h5>
+
+            <pre id="contenidoArchivo" class="border rounded bg-light p-2"
+              style="height: 420px; overflow: auto; text-align: left;">Sin archivo cargado.</pre>
+
+          </div>
+
         </div>
-      </footer>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
-        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
-    </script>
-    <script src="./dist/src/index.js" type="module"></script>
-  </body>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <footer id="footer" class="pb-4 pt-4 mt-4">
+    <div class="container">
+      <div class="row text-center">
+
+        <div class="col-12 col-lg">
+          <a href="#">Repositorio Principal</a>
+        </div>
+
+        <div class="col-12 col-lg">
+          <a href="#">Contáctanos</a>
+        </div>
+
+        <div class="col-12 col-lg">
+          <a href="#">Estudiantes</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous">
+  </script>
+
+  <script src="./dist/src/index.js" type="module"></script>
+
+</body>
+
 </html>
