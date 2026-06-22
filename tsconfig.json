@@ -1,23 +1,13 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    /* Destino y Módulos */
     "target": "es2015",
     "module": "es2015",
-    /* Librerías necesarias para que reconozca Canvas y DOM */
-    "lib": [
-      "dom",
-      "es2015"
-    ],
-    /* Directorio de salida */
     "outDir": "./dist/src",
-    /* Resolución de módulos */
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    /* Desactivamos el rastro técnico para limpiar la terminal */
-    "traceResolution": false,
-    /* Opciones de validación */
     "strictNullChecks": false,
+    "moduleResolution": "node",
+    "traceResolution": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
   },
