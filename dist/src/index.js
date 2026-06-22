@@ -1,24 +1,33 @@
 import { CanvasLocal } from './canvasLocal.js';
 
-const canvas = document.getElementById('circlechart');
-const graphics = canvas.getContext('2d');
+let canvas = document.getElementById('circlechart');
+let graphics = canvas.getContext('2d');
+
 const miCanvas = new CanvasLocal(graphics, canvas);
 
-// Elementos de la interfaz (Asegúrate que existan estos IDs en tu index.html)
-const inputFun = document.getElementById('fun-input');
-const btnDraw = document.getElementById('btn-draw');
-const btnIn = document.getElementById('btn-zoom-in');
-const btnOut = document.getElementById('btn-zoom-out');
+// Arreglo idéntico al de la clase para iniciar
+let arregloBase = [35, 15, 25, 100, 60, 90];
+miCanvas.paint(arregloBase);
 
-const actualizar = () => {
-    const formula = inputFun ? inputFun.value : "x*x";
-    miCanvas.paint(formula);
-};
+// Lógica para leer desde la pantalla y actualizar el gráfico
+const btnDibujar = document.getElementById('btnDibujar');
+const inputDatos = document.getElementById('datosEntrada');
 
-// Asignar eventos si los botones existen
-btnDraw?.addEventListener('click', actualizar);
-btnIn?.addEventListener('click', () => { miCanvas.setZoom(0.8); actualizar(); });
-btnOut?.addEventListener('click', () => { miCanvas.setZoom(1.2); actualizar(); });
-
-// Dibujo inicial
-actualizar();
+if (btnDibujar && inputDatos) {
+    btnDibujar.addEventListener('click', () => {
+        const valor = inputDatos.value;
+        if (valor.trim() !== '') {
+            const arregloNumeros = valor.split(',')
+                                        .map(item => parseFloat(item.trim()))
+                                        .filter(num => !isNaN(num));
+            
+            if (arregloNumeros.length > 0) {
+                miCanvas.paint(arregloNumeros);
+            } else {
+                alert("Por favor ingresa valores numéricos válidos separados por coma.");
+            }
+        } else {
+            alert("El campo de texto está vacío. Escribe algo como: 20, 50, 80");
+        }
+    });
+}
