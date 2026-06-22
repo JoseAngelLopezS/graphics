@@ -360,18 +360,8 @@ export class CanvasLocal {
   }
 
   private colorPieza(pieza: string): string {
-    const colores: { [pieza: string]: string } = {
-      base: '#212529',
-      eje_1: '#6c757d',
-      brazo_inferior: '#0d6efd',
-      eje_2: '#6c757d',
-      brazo_superior: '#198754',
-      cabeza: '#dc3545',
-      foco: '#ffc107'
-    };
-
-    return colores[pieza] || '#000000';
-  }
+  return '#212529';
+}
 
   private rotarXOrigen(punto: Punto3D, angulo: number): Punto3D {
     const cos = Math.cos(angulo);

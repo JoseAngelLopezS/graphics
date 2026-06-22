@@ -247,16 +247,7 @@ export class CanvasLocal {
         this.graphics.fillText('Usa la rueda del mouse para hacer zoom.', 45, 78);
     }
     colorPieza(pieza) {
-        const colores = {
-            base: '#212529',
-            eje_1: '#6c757d',
-            brazo_inferior: '#0d6efd',
-            eje_2: '#6c757d',
-            brazo_superior: '#198754',
-            cabeza: '#dc3545',
-            foco: '#ffc107'
-        };
-        return colores[pieza] || '#000000';
+        return '#212529';
     }
     rotarXOrigen(punto, angulo) {
         const cos = Math.cos(angulo);
